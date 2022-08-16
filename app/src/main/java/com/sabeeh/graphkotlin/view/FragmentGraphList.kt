@@ -9,24 +9,28 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.sabeeh.graphkotlin.R
+import com.sabeeh.graphkotlin.databinding.ActivityMainBinding
+import com.sabeeh.graphkotlin.databinding.FragmentGraphListBinding
 
 class FragmentGraphList : Fragment() {
-
-    var text : TextView? = null
+    private lateinit var binding: FragmentGraphListBinding//defining the binding class
+    //var text : TextView? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-            Log.d("cont","Container not null")
+        binding = FragmentGraphListBinding.inflate(inflater,container,false)
+        Log.d("cont","Container not null")
+        //FragmentGraphListBinding.inflate(inflater,container,false)
 
-        val v = inflater.inflate(R.layout.fragment_graph_list,container,false)
-        text = v?.findViewById(R.id.txt_fragment)
+        //val v = inflater.inflate(R.layout.fragment_graph_list,container,false)
+        //text = v?.findViewById(R.id.txt_fragment)
 
-        return v
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        text!!.setOnClickListener {
+        binding.txtFragment.setOnClickListener {
             Toast.makeText(activity,"text fragment",Toast.LENGTH_SHORT).show()
         }
 
