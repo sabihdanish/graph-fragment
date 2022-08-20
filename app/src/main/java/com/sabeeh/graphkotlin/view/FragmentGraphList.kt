@@ -1,6 +1,8 @@
 package com.sabeeh.graphkotlin.view
 
+import android.content.Context
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.sabeeh.graphkotlin.databinding.FragmentGraphListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FragmentGraphList : Fragment() {
     private lateinit var binding: FragmentGraphListBinding//defining the binding class
     //var text : TextView? = null
@@ -24,6 +28,20 @@ class FragmentGraphList : Fragment() {
         //text = v?.findViewById(R.id.txt_fragment)
         viewModel = ViewModelProvider(this).get(FragmentGraphViewModel::class.java)
 
+        //set shared prefs
+        val sharedPreference = this.context?.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+        var editor = sharedPreference?.edit()
+        editor?.putString("username","Anupam")
+        editor?.putLong("l",100L)
+        editor?.commit()
+
+        //to clear or remove
+        /*editor.clear()
+        editor.remove("username")*/
+
+        //get prefs
+        sharedPreference?.getString("username","defaultName")
+        sharedPreference?.getLong("l",1L)
 
         return binding.root
     }
