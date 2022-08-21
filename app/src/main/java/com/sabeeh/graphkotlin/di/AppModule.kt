@@ -15,7 +15,10 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideSharedPrefs(@ApplicationContext context:Context): SharedPreferences{
-        return context.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
-    }
+    fun provideSharedPrefs(@ApplicationContext context:Context)= context.getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+
+    @Singleton
+    @Provides
+    fun provideSharedPrefsEditor( sharedPreference:SharedPreferences)= sharedPreference.edit()
+
 }
