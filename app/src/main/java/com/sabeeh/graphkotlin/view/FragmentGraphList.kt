@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.sabeeh.graphkotlin.databinding.FragmentGraphListBinding
+import com.sabeeh.graphkotlin.viewmodel.FragmentGraphViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -17,7 +18,7 @@ import javax.inject.Inject
 class FragmentGraphList : Fragment() {
     private lateinit var binding: FragmentGraphListBinding//defining the binding class
     //var text : TextView? = null
-    lateinit var viewModel:FragmentGraphViewModel
+    lateinit var viewModel: FragmentGraphViewModel
     @Inject
     lateinit var sharedPreference: SharedPreferences
     @Inject

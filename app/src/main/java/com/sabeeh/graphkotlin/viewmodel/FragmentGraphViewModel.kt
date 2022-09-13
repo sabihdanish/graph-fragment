@@ -1,4 +1,4 @@
-package com.sabeeh.graphkotlin.view
+package com.sabeeh.graphkotlin.viewmodel
 
 import androidx.lifecycle.ViewModel
 
