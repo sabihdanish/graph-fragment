@@ -9,14 +9,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.sabeeh.graphkotlin.databinding.FragmentGraphListBinding
 import com.sabeeh.graphkotlin.viewmodel.FragmentGraphViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class FragmentGraphList : Fragment() {
     private lateinit var binding: FragmentGraphListBinding//defining the binding class
+    private var customAdapter: CustomAdapter? = null
+    private var graphArrayList: ArrayList<String>? = null
     //var text : TextView? = null
     lateinit var viewModel: FragmentGraphViewModel
     @Inject
@@ -27,6 +31,19 @@ class FragmentGraphList : Fragment() {
 
         binding = FragmentGraphListBinding.inflate(inflater,container,false)
         Log.d("cont","Container not null")
+        graphArrayList = ArrayList()
+        graphArrayList!!.add("Line Chart")
+        graphArrayList!!.add("Bar Chart")
+        graphArrayList!!.add("Pie Chart")
+        graphArrayList!!.add("Scatter Chart")
+        graphArrayList!!.add("Bubble Chart")
+        graphArrayList!!.add("Candle Stick Chart")
+        graphArrayList!!.add("Radar Chart")
+        graphArrayList!!.add("Horizontal Bar Chart")
+        graphArrayList!!.add("Combined Chart")
+        customAdapter = CustomAdapter(graphArrayList!!)
+
+
         //FragmentGraphListBinding.inflate(inflater,container,false)
 
         //val v = inflater.inflate(R.layout.fragment_graph_list,container,false)
@@ -53,13 +70,8 @@ class FragmentGraphList : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        binding.txtFragment.text = viewModel.counter.toString()
-
-        binding.txtFragment.setOnClickListener {
-            Toast.makeText(activity,"text fragment",Toast.LENGTH_SHORT).show()
-            viewModel.increment()
-            binding.txtFragment.text = viewModel.counter.toString()
-        }
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerView!!.adapter = customAdapter
 
     }
 
