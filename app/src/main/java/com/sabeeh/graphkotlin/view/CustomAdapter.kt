@@ -11,12 +11,18 @@ import android.widget.TextView
 import androidx.compose.ui.platform.LocalContext
 import androidx.recyclerview.widget.RecyclerView
 import com.sabeeh.graphkotlin.R
+import com.sabeeh.graphkotlin.model.RecyclerViewItemClickListener
 import kotlinx.coroutines.currentCoroutineContext
 import java.util.ArrayList
 import kotlin.coroutines.coroutineContext
 
 class CustomAdapter(private val mList: ArrayList<String>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
+    lateinit var listener: RecyclerViewItemClickListener
+
+    fun init(l: RecyclerViewItemClickListener) {
+        listener = l
+    }
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflates the card_view_design view
@@ -32,7 +38,9 @@ class CustomAdapter(private val mList: ArrayList<String>) : RecyclerView.Adapter
         // sets the text to the textview from our itemHolder class
         holder.textViewName.text = mList[position]
         holder.textViewName.setOnClickListener {
-            Log.d(""+holder.textViewName.text,""+holder.textViewName.text+" Clicked")
+            //Log.d(""+holder.textViewName.text,""+holder.textViewName.text+" Clicked")
+
+            listener.onItemClick(position,holder.textViewName.text.toString())
 
         }
 
@@ -48,4 +56,5 @@ class CustomAdapter(private val mList: ArrayList<String>) : RecyclerView.Adapter
 
         val textViewName: TextView = itemView.findViewById(R.id.graphName)
     }
+
 }

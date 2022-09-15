@@ -1,5 +1,6 @@
 package com.sabeeh.graphkotlin.view
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -7,17 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
+import com.sabeeh.graphkotlin.R
 import com.sabeeh.graphkotlin.databinding.FragmentGraphListBinding
+import com.sabeeh.graphkotlin.model.RecyclerViewItemClickListener
 import com.sabeeh.graphkotlin.viewmodel.FragmentGraphViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
-class FragmentGraphList : Fragment() {
+class FragmentGraphList : Fragment() ,RecyclerViewItemClickListener{
     private lateinit var binding: FragmentGraphListBinding//defining the binding class
     private var customAdapter: CustomAdapter? = null
     private var graphArrayList: ArrayList<String>? = null
@@ -42,6 +47,7 @@ class FragmentGraphList : Fragment() {
         graphArrayList!!.add("Horizontal Bar Chart")
         graphArrayList!!.add("Combined Chart")
         customAdapter = CustomAdapter(graphArrayList!!)
+        customAdapter!!.init(this)
 
 
         //FragmentGraphListBinding.inflate(inflater,container,false)
@@ -75,6 +81,21 @@ class FragmentGraphList : Fragment() {
 
         //binding.recyclerView.setOnIte
 
+    }
+
+    override fun onItemClick(position: Int, item: String) {
+        Log.d(item+" Clicked",""+item)
+        Snackbar.make(activity as Context,binding.recyclerView as View, item,Snackbar.LENGTH_SHORT).show()
+        replaceFragment(GraphFragment(),item)
+    }
+
+    fun replaceFragment(fragment: Fragment ,fragmentName:String){
+        val fram = activity?.supportFragmentManager?.beginTransaction()
+        val mBundle = Bundle()
+        mBundle.putString("frag_name",fragmentName)
+        fragment.arguments= mBundle
+        fram?.replace(R.id.fragment_main, fragment)
+        fram?.commit()
     }
 
 }
