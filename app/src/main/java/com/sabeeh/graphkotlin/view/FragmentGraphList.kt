@@ -73,6 +73,8 @@ class FragmentGraphList : Fragment() {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         binding.recyclerView!!.adapter = customAdapter
 
+        //binding.recyclerView.setOnIte
+
     }
 
 }
