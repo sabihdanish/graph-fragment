@@ -1,8 +1,7 @@
-package com.sabeeh.graphkotlin.view
+package com.sabeeh.graphkotlin.view.fragments
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,7 +40,7 @@ class GraphFragment:Fragment() {
         val fragmentName = arguments!!.getString("frag_name")
         if(fragmentName.equals("Line Chart")){
             bindingLine = GraphLineBinding.inflate(inflater,container,false)
-            ourLineChart = bindingLine.ourLineChart
+            ourLineChart = bindingLine.lineChart
             val growthArray = Array<Int>(6) {0}
             for (i in 1..6) {
                 growthArray[i-1] = i+21/i
@@ -50,7 +49,7 @@ class GraphFragment:Fragment() {
             return bindingLine.root
         } else if(fragmentName.equals("Bar Chart")){
             bindingBar = GraphBarBinding.inflate(inflater,container,false)
-            ourBarChart = bindingBar.ourBarChart
+            ourBarChart = bindingBar.barChart
             val growthArray = Array<Int>(6) {0}
             for (i in 1..6) {
                 growthArray[i-1] = i+66/i
@@ -59,7 +58,7 @@ class GraphFragment:Fragment() {
             return bindingBar.root
         } else if(fragmentName.equals("Pie Chart")){
             bindingPie = GraphPieBinding.inflate(inflater,container,false)
-            ourPieChart = bindingPie.ourPieChart
+            ourPieChart = bindingPie.pieChart
             val growthArray = Array<Int>(6) {0}
             val nameArray = Array<String>(6){"nameo"}
             for (i in 1..6) {

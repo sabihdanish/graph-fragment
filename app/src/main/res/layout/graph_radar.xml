@@ -14,14 +14,16 @@
         android:layout_margin="20dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="15dp"
-        android:text="Pie Chart"
+        android:text="Radar Chart"
         android:textSize="35sp"
         android:textStyle="bold" />
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChart"
+    <com.github.mikephil.charting.charts.RadarChart
+        android:id="@+id/radarChart"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginRight="7dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         />
 
 </androidx.cardview.widget.CardView>

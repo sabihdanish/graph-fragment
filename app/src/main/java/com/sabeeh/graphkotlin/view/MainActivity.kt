@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.sabeeh.graphkotlin.R
 import com.sabeeh.graphkotlin.databinding.ActivityMainBinding
+import com.sabeeh.graphkotlin.view.fragments.FragmentGraphList
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,5 +25,13 @@ class MainActivity : AppCompatActivity() {
         val fram = supportFragmentManager.beginTransaction()
         fram.replace(R.id.fragment_main,fragment)
         fram.commit()
+    }
+    fun replaceFragment(fragment: Fragment ,fragmentName:String){
+        val fram = supportFragmentManager?.beginTransaction()
+        val mBundle = Bundle()
+        mBundle.putString("frag_name",fragmentName)
+        fragment.arguments= mBundle
+        fram?.replace(R.id.fragment_main, fragment)
+        fram?.commit()
     }
 }
