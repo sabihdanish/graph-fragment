@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         mBundle.putString("frag_name",fragmentName)
         fragment.arguments= mBundle
         fram?.replace(R.id.fragment_main, fragment)
+        fram?.addToBackStack("FragmentGraphList");
         fram?.commit()
     }
 }
