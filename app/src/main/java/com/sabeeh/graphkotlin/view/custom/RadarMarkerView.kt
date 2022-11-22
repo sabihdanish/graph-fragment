@@ -1,15 +1,10 @@
 package com.sabeeh.graphkotlin.view.custom
 
-import android.R
 import android.content.Context
 import android.graphics.Typeface
 import android.widget.TextView
 import com.github.mikephil.charting.components.MarkerView
-import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.utils.MPPointF
-import com.sabeeh.graphkotlin.databinding.RadarMarkerviewBinding
-import java.lang.String
-import java.text.DecimalFormat
 
 
 class RadarMarkerView(context: Context, layoutResource: Int) :
