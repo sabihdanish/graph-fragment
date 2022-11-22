@@ -135,6 +135,6 @@ class RadarFragment: Fragment() {
 
 }
 
-private fun XAxis.setValueFormatter(iAxisValueFormatter: IAxisValueFormatter) {
+fun XAxis.setValueFormatter(iAxisValueFormatter: IAxisValueFormatter) {
 
 }
