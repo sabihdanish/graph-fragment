@@ -37,7 +37,7 @@ class CustomAdapter(private val mList: ArrayList<String>) : RecyclerView.Adapter
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         // sets the text to the textview from our itemHolder class
         holder.textViewName.text = mList[position]
-        holder.textViewName.setOnClickListener {
+        holder.itemView.setOnClickListener {
             //Log.d(""+holder.textViewName.text,""+holder.textViewName.text+" Clicked")
 
             listener.onItemClick(position,holder.textViewName.text.toString())
